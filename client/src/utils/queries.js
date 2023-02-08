@@ -1,10 +1,12 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_TECH = gql`
-  query tech {
-    tech {
-      _id
+  query allDogs {
+    dogs {
+      id
+      breed
       name
+      age
     }
   }
 `;
