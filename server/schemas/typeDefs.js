@@ -5,6 +5,12 @@ const typeDefs = gql`
     _id: ID!
     name: String!
   }
+  type Dog {
+    _id: ID!
+    breed: String
+    name: String!
+    age: Int
+  }
 
   type Matchup {
     _id: ID!
@@ -16,12 +22,14 @@ const typeDefs = gql`
 
   type Query {
     tech: [Tech]
+    dogs: [Dog]
     matchups(_id: String): [Matchup]
   }
 
   type Mutation {
     createMatchup(tech1: String!, tech2: String!): Matchup
     createVote(_id: String!, techNum: Int!): Matchup
+    deleteDog(_id: ID!): Dog
   }
 `;
 

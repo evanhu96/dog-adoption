@@ -1,9 +1,12 @@
-const { Tech, Matchup } = require('../models');
+const { Tech, Matchup, Dog } = require("../models");
 
 const resolvers = {
   Query: {
     tech: async () => {
-      return Tech.find({});
+      return Dog.find({});
+    },
+    dogs: async () => {
+      return Dog.find({});
     },
     matchups: async (parent, { _id }) => {
       const params = _id ? { _id } : {};
@@ -11,6 +14,21 @@ const resolvers = {
     },
   },
   Mutation: {
+    // Delete a dog
+    deleteDog: async (parent, args) => {
+      const dog = await Dog.findByIdAndRemove(args);
+      return dog;},
+
+    //   {
+    //   type: DogType,
+    //   args: {
+    //     id: { type: new GraphQLNonNull(GraphQLID) },
+    //   },
+    //   resolve(parent, args) {
+    //     return Dog.findByIdAndRemove(args.id);
+    //   },
+    // },
+
     createMatchup: async (parent, args) => {
       const matchup = await Matchup.create(args);
       return matchup;

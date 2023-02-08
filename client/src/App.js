@@ -5,7 +5,8 @@ import Home from './pages/Home';
 import Matchup from './pages/Matchup';
 import Vote from './pages/Vote';
 import NotFound from './pages/NotFound';
-
+import SearchResults from './components/SearchResults';
+import Adoptables from './components/Adoptables';
 const client = new ApolloClient({
   uri: '/graphql',
   cache: new InMemoryCache(),
@@ -24,6 +25,10 @@ function App() {
             <Route 
               path="/matchup" 
               element={<Matchup />}
+            />
+            <Route 
+              path="/adoptables" 
+              element={<Adoptables />}
             />
             <Route 
               path="/matchup/:id" 
