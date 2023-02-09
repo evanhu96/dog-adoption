@@ -1,6 +1,7 @@
 const connection = require("../../config/connection");
-const { Dog, Breed } = require("../../models");
+const { Dog, Breed,User } = require("../../models");
 const { getRandomName, getRandomAge } = require("./data");
+const users = require('./user.json');
 
 // Start the seeding runtime timer
 // setTimeout(() => {
@@ -10,7 +11,8 @@ connection.once("open", async () => {
   // Delete the entries in the collection
   console.log("seeding...");
   await Dog.deleteMany({});
-
+  await User.deleteMany({})
+  await User.create(users)
   // Empty arrays for randomly generated dogs and comments
   const dogs = [];
 

@@ -22,7 +22,17 @@ const typeDefs = gql`
     lifeSpan: String
     imgLink: String
   }
+  type User {
+    _id: ID
+    name: String
+    email: String
+    password: String
+  }
 
+  type Auth {
+    token: ID!
+    user: User
+  }
 
   type Query {
     dogs: [Dog]
@@ -37,6 +47,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
+    login(email: String!, password: String!): Auth
     deleteDog(_id: ID!): Dog
     addDog(name: String, breed: String, age: Int): Dog
   }

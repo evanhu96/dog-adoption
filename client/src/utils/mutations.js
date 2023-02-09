@@ -22,4 +22,15 @@ mutation Mutation($age: Int, $breed: String, $name: String) {
   }
 }
 `
-export {DELETE_DOG,ADD_DOG}
+const LOGIN_USER = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        _id
+        name
+      }
+    }
+  }
+`;
+export {DELETE_DOG,ADD_DOG,LOGIN_USER}

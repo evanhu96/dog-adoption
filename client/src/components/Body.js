@@ -5,6 +5,7 @@ import AddDog from "./AddDog";
 import Home from "../pages/Home";
 import About from "../pages/about"
 import Contact from "../pages/contact"
+import Login from "../pages/Login";
 
 export default function Body({ breed, setBreed, current, setCurrent }) {
   console.log(breed);
@@ -32,5 +33,7 @@ export default function Body({ breed, setBreed, current, setCurrent }) {
   
   }else if(current ==="contact"){
     return <Contact/>
+  }else if(current ==="login"){
+    return <Login/>
   }
 }

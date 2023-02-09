@@ -19,6 +19,7 @@ const NavBar = ({setCurrent,setBreed}) => {
       <a href="https://www.peta.org/" target="_blank" rel="noreferrer">
         Resources
       </a>
+      <button onClick={()=>setCurrent("login")}>Admin Login</button>
       <br></br>
       <br></br>
     </div>
