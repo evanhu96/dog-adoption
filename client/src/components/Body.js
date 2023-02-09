@@ -1,14 +1,13 @@
-import { useQuery } from "@apollo/client";
-import { GET_DOGS } from "../queries/dogQuery";
 import SearchResults from "./SearchResults";
 import BreedPage from "./BreedPage";
 import Adoptables from "./Adoptables";
 import AddDog from "./AddDog";
-import Home from "../pages/home";
+import Home from "../pages/Home";
 import About from "../pages/about"
 import Contact from "../pages/contact"
 
 export default function Body({ breed, setBreed, current, setCurrent }) {
+  console.log(breed);
   if (current === "search") {
     if (breed === "") {
       return (

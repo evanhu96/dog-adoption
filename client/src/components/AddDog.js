@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ADD_DOG } from "../mutations/dogMutations";
+import { ADD_DOG } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
 
 export default function AddDog() {

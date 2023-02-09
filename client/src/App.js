@@ -1,51 +1,32 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import Home from './pages/Home';
-import Matchup from './pages/Matchup';
-import Vote from './pages/Vote';
-import NotFound from './pages/NotFound';
-import SearchResults from './components/SearchResults';
-import Adoptables from './components/Adoptables';
+import "./App.css";
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import Body from "./components/Body";
+import NavBar from "./components/navbar";
+import { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 const client = new ApolloClient({
-  uri: '/graphql',
+  uri: `/graphql`,
   cache: new InMemoryCache(),
 });
 
 function App() {
+  const [current, setCurrent] = useState("search");
+  const [breed, setBreed] = useState("Saluki");
+
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <div className="flex-column justify-center align-center min-100-vh bg-primary">
-          <Routes>
-            <Route 
-              path="/" 
-              element={<Home />}
+      <ApolloProvider client={client}>
+        <BrowserRouter>
+          <section>
+            <NavBar setCurrent={setCurrent} setBreed={setBreed} />
+            <Body
+              current={current}
+              setCurrent={setCurrent}
+              breed={breed}
+              setBreed={setBreed}
             />
-            <Route 
-              path="/matchup" 
-              element={<Matchup />}
-            />
-            <Route 
-              path="/search" 
-              element={<SearchResults />}
-            />
-            <Route 
-              path="/adoptables" 
-              element={<Adoptables />}
-            />
-            <Route 
-              path="/matchup/:id" 
-              element={<Vote />}
-            />
-            <Route 
-              path="*"
-              element={<NotFound />}
-            />
-          </Routes>
-        </div>
-      </Router>
-    </ApolloProvider>
+          </section>
+        </BrowserRouter>
+      </ApolloProvider>
   );
 }
 

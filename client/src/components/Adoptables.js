@@ -24,7 +24,7 @@ export default function Adoptables(breed) {
           </thead>
           <tbody>
           {/* dynamically create rows from DogRow based on last query */}
-          {data.dogs.map((dog) => (
+          {data.dogsByBreed.map((dog) => (
             <DogRow
               key={dog.id}
               dog={dog}

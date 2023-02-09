@@ -1,27 +1,18 @@
-const { Tech, Matchup, Dog,Breed } = require("../models");
-
-
-
+const { Breed, Dog } = require("../models");
 
 const resolvers = {
   Query: {
-    tech: async () => {
-      return Dog.find({});
-    },
     dogs: async () => {
       return Dog.find({});
     },
-    dogsByBreed:async(parent, args)=>{
-      return Dog.find(args)
+    dogsByBreed: async (parent, args) => {
+      return Dog.find(args);
     },
-    facetSearch: async(parent, args) =>{
-        return Breed.find(args);
-
+    facetSearch: async (parent, args) => {
+      return Breed.find(args);
     },
-
-    matchups: async (parent, { _id }) => {
-      const params = _id ? { _id } : {};
-      return Matchup.find(params);
+    breed: async (parent, args) => {
+      return Breed.findOne(args);
     },
   },
   Mutation: {
@@ -33,19 +24,6 @@ const resolvers = {
     addDog: async (parent, args) => {
       const dog = await Dog.create(args);
       return dog;
-    },
-
-    createMatchup: async (parent, args) => {
-      const matchup = await Matchup.create(args);
-      return matchup;
-    },
-    createVote: async (parent, { _id, techNum }) => {
-      const vote = await Matchup.findOneAndUpdate(
-        { _id },
-        { $inc: { [`tech${techNum}_votes`]: 1 } },
-        { new: true }
-      );
-      return vote;
     },
   },
 };
