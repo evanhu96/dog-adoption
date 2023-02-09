@@ -27,6 +27,10 @@ function App() {
               element={<Matchup />}
             />
             <Route 
+              path="/search" 
+              element={<SearchResults />}
+            />
+            <Route 
               path="/adoptables" 
               element={<Adoptables />}
             />

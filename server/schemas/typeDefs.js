@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type Tech {
@@ -12,6 +12,19 @@ const typeDefs = gql`
     age: Int
   }
 
+  type Breed {
+    _id: ID!
+    breed: String
+    category: String
+    size: String
+    exercise: String
+    homeSize: String
+    grooming: String
+    coat: String
+    lifeSpan: String
+    imgLink: String
+  }
+
   type Matchup {
     _id: ID!
     tech1: String!
@@ -22,14 +35,23 @@ const typeDefs = gql`
 
   type Query {
     tech: [Tech]
-    dogs: [Dog]
     matchups(_id: String): [Matchup]
+    dogs: [Dog]
+    dogsByBreed(breed: String): [Dog]
+    getBreed(breed: String): [Breed]
+    facetSearch(
+      exercise: [String]
+      category: [String]
+      grooming: [String]
+      homeSize: [String]
+    ): [Breed]
   }
 
   type Mutation {
     createMatchup(tech1: String!, tech2: String!): Matchup
     createVote(_id: String!, techNum: Int!): Matchup
     deleteDog(_id: ID!): Dog
+    addDog(name: String, breed: String, age: Int): Dog
   }
 `;
 
